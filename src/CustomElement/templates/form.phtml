@@ -1,0 +1,38 @@
+<?php
+
+use CustomElement\Form\MyElement;
+use CustomElement\Form\MyFieldset;
+use CustomElement\Form\MyForm;
+
+/** @var MyForm $form */
+$form = $this->form;
+
+
+echo $this->form($form);
+
+echo '<hr>';
+
+echo $this->form()->openTag($form);
+$myFieldset = $form->get('myFieldset');
+echo $this->formCollection($myFieldset);
+
+echo '<hr>';
+
+foreach ($form as $field) {
+    echo $this->formRow($field) .'<br/>';
+
+    if ($field instanceof MyFieldset){
+        foreach ($field as $element){
+            
+            if ($element instanceof MyElement){
+                echo $this->myHelper($element);
+            }else{
+                echo $this->formRow($element) .'<br/>';
+            }
+        }
+    }
+
+    echo $this->formElementErrors($element).'<hr/>';
+}
+
+echo $this->form()->closeTag();
