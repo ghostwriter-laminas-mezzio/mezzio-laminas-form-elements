@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CustomElement;
 
 use CustomElement\Factory\MyElementFactory;
-use CustomElement\Factory\CustomElementHelperFactory;
 use CustomElement\Factory\MyFieldsetFactory;
 use CustomElement\Factory\MyFormFactory;
 use CustomElement\Form\MyElement;
@@ -13,7 +12,9 @@ use CustomElement\Form\MyFieldset;
 use CustomElement\Form\MyForm;
 use CustomElement\Handler\MyRequestHandler;
 use CustomElement\Handler\MyRequestHandlerFactory;
+use CustomElement\View\Helper\MyFormElement;
 use CustomElement\View\Helper\MyHelper;
+use Laminas\Form\View\Helper\FormElement;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Container\ErrorHandlerFactory;
@@ -61,9 +62,11 @@ final class ConfigProvider
         return [
             'factories' => [
                 MyHelper::class => InvokableFactory::class,
+                MyFormElement::class => InvokableFactory::class,
             ],
             'aliases' => [
                 'myHelper' => MyHelper::class,
+                FormElement::class => MyFormElement::class,
             ],
         ];
     }
