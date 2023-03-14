@@ -30,9 +30,9 @@ foreach ($form as $field) {
                 echo $this->formRow($element) .'<br/>';
             }
         }
-    }
 
-    echo $this->formElementErrors($element).'<hr/>';
+        echo $this->formElementErrors($element).'<hr/>';
+    }
 }
 
 echo $this->form()->closeTag();
